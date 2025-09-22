@@ -27,8 +27,9 @@ RUN apt-get update \
         mysqli \
         && docker-php-ext-enable pdo_mysql mysqli
 
-RUN pecl install xdebug \
-    && docker-php-ext-enable xdebug
+# Install xdebug and redis extensions via PECL
+RUN pecl install xdebug redis \
+    && docker-php-ext-enable xdebug redis
 
 ENV APACHE_DOCUMENT_ROOT /var/www/html
 
