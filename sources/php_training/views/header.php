@@ -1,4 +1,6 @@
 <?php
+require_once 'configs/csrf.php';
+
 $id = '';
 if (!empty($_SESSION['id'])) {
     $id = $_SESSION['id'];
@@ -45,7 +47,14 @@ if (!empty($_GET['keyword'])) {
                         <li><a href="view_user.php?id=<?php echo $id ?>">Profile</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="login.php">Login</a></li>
-                        <li><a href="logout.php">Logout</a></li>
+                        <li>
+                            <form method="post" action="logout.php" style="display:inline; margin:0; padding:0;">
+                                <?php echo csrf_field(); ?>
+                                <button type="submit" class="btn btn-link" style="padding:0; margin:0; color: #337ab7; background:none; border:none; text-decoration:underline; cursor:pointer;">
+                                    Logout
+                                </button>
+                            </form>
+                        </li>
                     </ul>
                 </li>
             </ul>
